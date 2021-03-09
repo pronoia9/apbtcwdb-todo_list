@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Heading from './Heading';
 import Form from './Form';
 import Item from './Item';
+import btnColors from '../btnColors.js';
 
 function App() {
   // To apply a background color to the add button
@@ -13,7 +14,7 @@ function App() {
   function updateList(i) {
     if (i !== '') {
       // update button color 
-      setButtonColor('#ad6c80');
+      setButtonColor(btnColors.inputValid);
       setTimeout(() => setButtonColor(''), 150);
 
       // add the saved item to the list
@@ -27,8 +28,8 @@ function App() {
       ]);
     } else {
       // if nothing was entered, show a different button color
-      setButtonColor('#350b40');
-      setTimeout(() => setButtonColor(''), 150);
+      setButtonColor(btnColors.inputInvalid);
+      setTimeout(() => setButtonColor(btnColors.neutral), 150);
     }
   }
 

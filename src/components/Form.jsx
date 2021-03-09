@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import btnColors from '../btnColors.js';
 
 function Input(props) {
   // Item (from input) to be added to the list of items
@@ -8,8 +9,8 @@ function Input(props) {
     <div className='form'>
       <input onChange={(e) => setItem(e.target.value)} type='text' value={item} />
       <button
-        onMouseOver={() => props.setButtonColor('#ee99a0')}
-        onMouseOut={() => props.setButtonColor('')}
+        onMouseOver={() => props.setButtonColor(btnColors.onHover)}
+        onMouseOut={() => props.setButtonColor(btnColors.neutral)}
         onClick={() => {
           props.updateList(item);
           setItem('');
