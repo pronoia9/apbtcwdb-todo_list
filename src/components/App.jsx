@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Heading from './Heading';
+import Input from './Input';
+import Item from './Item';
 
 function App() {
   // To apply a background color to the add button
