@@ -1,32 +1,29 @@
 import React, { useState } from 'react';
 import Heading from './Heading';
-import Input from './Input';
+import Form from './Form';
 import Item from './Item';
 
 function App() {
   // To apply a background color to the add button
   const [buttonColor, setButtonColor] = useState('');
-  // Item (from input) to be added to the list of items
-  const [item, setItem] = useState('');
+
   // List of items
   const [list, setList] = useState([]);
 
-  function updateList() {
-    if (item !== '') {
+  function updateList(i) {
+    if (i !== '') {
       // update button color
       setButtonColor('peachpuff');
       setTimeout(() => setButtonColor(''), 150);
-      // push the saved item to the list
+      // add the saved item to the list
       setList((prev) => [
         ...prev,
         {
           id: Math.random().toString().slice(2),
-          listItem: item,
+          listItem: i,
           checked: false,
         },
       ]);
-      // then reset the item value
-      setItem('');
     } else {
       // if nothing was entered as input, show a different color
       setButtonColor('lightcoral');
@@ -44,11 +41,14 @@ function App() {
 
   return (
     <div className='container'>
-      <div className='heading'>
-        <h1>To-Do List</h1>
-      </div>
-
-      <div className='form'>
+      <Heading />
+      <Form
+        // setItem={setItem}
+        updateList={updateList}
+        setButtonColor={setButtonColor}
+        buttonColor={buttonColor}
+      />
+      {/* <div className='form'>
         <input onChange={(e) => setItem(e.target.value)} type='text' value={item} />
         <button
           onMouseOver={() => setButtonColor('palegoldenrod')}
@@ -57,17 +57,17 @@ function App() {
         >
           <span style={{ backgroundColor: buttonColor }}>Add</span>
         </button>
-      </div>
+      </div> */}
       <div>
         <ul>
           {list.map((li) => (
-            <li
+            <Item
               key={li.id}
-              style={{ textDecoration: li.checked && 'line-through' }}
-              onClick={() => strike(li)}
-            >
-              {li.listItem}
-            </li>
+              id={li.id}
+              listItem={li.listItem}
+              checked={li.checked}
+              strike={strike}
+            />
           ))}
         </ul>
       </div>
