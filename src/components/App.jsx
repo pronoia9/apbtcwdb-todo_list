@@ -8,12 +8,15 @@ function App() {
   // To apply a background color to the add button
   const [buttonColor, setButtonColor] = useState('');
 
+  // Item (from input) to be added to the list of items
+  const [item, setItem] = useState('');
+
   // List of items
   const [list, setList] = useState([]);
 
   function updateList(i) {
     if (i !== '') {
-      // update button color 
+      // update button color
       setButtonColor(btnColors.inputValid);
       setTimeout(() => setButtonColor(''), 150);
 
@@ -26,6 +29,9 @@ function App() {
           checked: false,
         },
       ]);
+
+      // reset the item
+      setItem('');
     } else {
       // if nothing was entered, show a different button color
       setButtonColor(btnColors.inputInvalid);
@@ -43,7 +49,13 @@ function App() {
   return (
     <div className='container'>
       <Heading />
-      <Form updateList={updateList} setButtonColor={setButtonColor} buttonColor={buttonColor} />
+      <Form
+        updateList={updateList}
+        setButtonColor={setButtonColor}
+        buttonColor={buttonColor}
+        item={item}
+        setItem
+        ={setItem}/>
       <div>
         <ul>
           {list.map((li) => (
