@@ -8,7 +8,7 @@ function Input(props) {
     <div className='form'>
       <input onChange={(e) => setItem(e.target.value)} type='text' value={item} />
       <button
-        onMouseOver={() => props.setButtonColor('palegoldenrod')}
+        onMouseOver={() => props.setButtonColor('#ee99a0')}
         onMouseOut={() => props.setButtonColor('')}
         onClick={() => {
           props.updateList(item);

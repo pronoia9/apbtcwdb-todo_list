@@ -12,24 +12,27 @@ function App() {
 
   function updateList(i) {
     if (i !== '') {
-      // update button color
-      setButtonColor('peachpuff');
+      // update button color 
+      setButtonColor('#ad6c80');
       setTimeout(() => setButtonColor(''), 150);
+
       // add the saved item to the list
-      setList((prev) => [...prev, {
-        id: Math.random().toString().slice(2),
-        listItem: i,
-        checked: false
-      }]);
+      setList((prev) => [
+        ...prev,
+        {
+          id: Math.random().toString().slice(2),
+          listItem: i,
+          checked: false,
+        },
+      ]);
     } else {
-      // if nothing was entered as input, show a different color
-      setButtonColor('lightcoral');
+      // if nothing was entered, show a different button color
+      setButtonColor('#350b40');
       setTimeout(() => setButtonColor(''), 150);
     }
   }
 
-  // on click on a list item will strikethrough it, and then delete it
-  function strike(itm) {
+  function strikeItem(itm) {
     // map the list and change the checked property of the item that was clicked
     setList(list.map((i) => (i.id === itm.id ? { ...itm, checked: true } : i)));
     // wait and update the list again to delete the item
@@ -39,11 +42,7 @@ function App() {
   return (
     <div className='container'>
       <Heading />
-      <Form
-        updateList={updateList}
-        setButtonColor={setButtonColor}
-        buttonColor={buttonColor}
-      />
+      <Form updateList={updateList} setButtonColor={setButtonColor} buttonColor={buttonColor} />
       <div>
         <ul>
           {list.map((li) => (
@@ -52,7 +51,7 @@ function App() {
               id={li.id}
               listItem={li.listItem}
               checked={li.checked}
-              strike={strike}
+              strikeItem={strikeItem}
             />
           ))}
         </ul>

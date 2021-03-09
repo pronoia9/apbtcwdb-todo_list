@@ -5,7 +5,7 @@ function Item(props) {
   return (
     <li
       style={{ textDecoration: props.checked && 'line-through' }}
-      onClick={() => props.strike(props)}
+      onClick={() => props.strikeItem(props)}
     >
       {props.listItem}
     </li>
