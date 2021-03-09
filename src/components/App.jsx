@@ -16,14 +16,11 @@ function App() {
       setButtonColor('peachpuff');
       setTimeout(() => setButtonColor(''), 150);
       // add the saved item to the list
-      setList((prev) => [
-        ...prev,
-        {
-          id: Math.random().toString().slice(2),
-          listItem: i,
-          checked: false,
-        },
-      ]);
+      setList((prev) => [...prev, {
+        id: Math.random().toString().slice(2),
+        listItem: i,
+        checked: false
+      }]);
     } else {
       // if nothing was entered as input, show a different color
       setButtonColor('lightcoral');
@@ -35,7 +32,7 @@ function App() {
   function strike(itm) {
     // map the list and change the checked property of the item that was clicked
     setList(list.map((i) => (i.id === itm.id ? { ...itm, checked: true } : i)));
-    // wait 0.5s and update the list again to delete the item
+    // wait and update the list again to delete the item
     setTimeout(() => setList(list.filter((obj) => obj.id !== itm.id)), 500);
   }
 
@@ -43,21 +40,10 @@ function App() {
     <div className='container'>
       <Heading />
       <Form
-        // setItem={setItem}
         updateList={updateList}
         setButtonColor={setButtonColor}
         buttonColor={buttonColor}
       />
-      {/* <div className='form'>
-        <input onChange={(e) => setItem(e.target.value)} type='text' value={item} />
-        <button
-          onMouseOver={() => setButtonColor('palegoldenrod')}
-          onMouseOut={() => setButtonColor('')}
-          onClick={updateList}
-        >
-          <span style={{ backgroundColor: buttonColor }}>Add</span>
-        </button>
-      </div> */}
       <div>
         <ul>
           {list.map((li) => (
